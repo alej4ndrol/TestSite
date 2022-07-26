@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use http\Client\Curl\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -20,15 +21,14 @@ class SecurityController extends AbstractController
         $error = $authenticationUtils->getLastAuthenticationError();
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
-        if ($lastUsername)
-        {
-            return $this->redirectToRoute('app_profile');
-        }
+
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
     #[Route(path: '/profile', name: 'app_profile')]
     public function profile () :Response
     {
+        $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_ADMIN');
+
         return $this->render('security/profile.html.twig');
     }
 
