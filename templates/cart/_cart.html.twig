@@ -1,0 +1,23 @@
+<div class="row">
+    {% set sum = 0 %}
+    {% for item in items %}
+        <div class="col-md-4 ">
+            <a href="{{ path('app_shop_item', {'id': item.itemid.id}) }}" class=" text-decoration-none text-dark">
+                <div class="card mb-4 shadow-sm">
+                    <img src="{{ item.itemid.itemImageSrc}}" class="img-fluid" alt="Pupa">
+                    <div class="card-body">
+                        <h4>{{ item.itemid.name }}</h4>
+
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h5>{{ item.itemid.price }} руб.</h5>
+                            {% set sum = sum + item.itemid.price %}
+                            <a class="btn btn-primary" href="{{ path('app_remove_cart', {'id': item.itemid.id}) }}" role="button">Remove</a>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    {% endfor %}
+    <h4>Итого: {{ sum }}</h4>
+    {#        <a class="btn btn-primary" href="{{ path('app_clear_cart') }}" role="button">Clear</a>#}
+</div>

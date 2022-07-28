@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ item.name }}{% endblock %}
+
+{% block page %}{{ item.name }}{% endblock %}
+
+{% block body %}
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="col-md-5 img-thumbnail p-3 ">
+            <img class="img-fluid" src="{{ item.itemImageSrc}}" alt="Pupa">
+        </div>
+        <div class="col p-4 d-flex flex-column position-static">
+            <div class="mb-3 h3">Price: {{ item.price }}</div>
+            <p class="card-text mb-4">Description: {{ item.description }}</p>
+
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                <a href="{{ path('app_cart_add', {'id': item.id}) }}" type="button" class="btn btn-primary col-md-3">Add to cart</a>
+            {% else %}
+                Only an authorized user can add to cart! <br>
+                <a href="{{ path('app_login') }}" class="link-dark px-2">Sign in</a>
+            {% endif %}
+
+{#            <a href="#" type="button" class="btn btn-primary col-md-3">Add to cart</a>#}
+        </div>
+    </div>
+{% endblock %}

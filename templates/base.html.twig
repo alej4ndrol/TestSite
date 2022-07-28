@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html class="h-100">
+<html class="h-100" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
@@ -20,12 +20,15 @@
     <div class="container d-flex flex-wrap">
         <ul class="nav me-auto">
             <li class="nav-item"><a href="{{ path('app_index') }}" class="nav-link link-dark px-2 active" aria-current="page">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link link-dark px-2">Shop</a></li>
+            <li class="nav-item"><a href="{{ path('app_shop') }}" class="nav-link link-dark px-2">Shop</a></li>
 
         </ul>
         <ul class="nav">
-            {% if app.user %}
-                <li class="nav-item">  You are <a href="{{ path('app_profile') }}">{{ app.user.userIdentifier }}</a>, <a href="{{ path('app_logout') }}">Logout</a></li>
+            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item"><a href="{{ path('app_cart') }}" class="nav-link link-dark px-2 ">Cart</a></li>
+                    <li class="nav-item"><a href="{{ path('app_profile') }}" class="nav-link link-dark px-2 ">{{ app.user.userIdentifier }}</a></li>
+                    <li class="nav-item"><a href="{{ path('app_logout') }}" class="nav-link link-dark px-2 ">Logout</a></li>
+{#               @TODO cart#}
                 {% else  %}
                     <li class="nav-item"><a href="{{ path('app_login') }}" class="nav-link link-dark px-2">Login</a></li>
                     <li class="nav-item"><a href="{{ path('app_register') }}" class="nav-link link-dark px-2">Sign up</a></li>
@@ -39,8 +42,12 @@
             <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
             <span class="fs-4">DolbyShop</span>
         </a>
+        <h5 class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark">
+            {% block page %}{% endblock %}
+        </h5>
         <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
             <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+{#            @TODO Add search by item#}
         </form>
     </div>
 </header>
@@ -57,7 +64,7 @@
 
         <ul class="nav col-md-4 justify-content-end">
             <li class="nav-item"><a href="{{ path('app_index') }}" class="nav-link px-2 text-muted">Home</a></li>
-            <li class="nav-item"><a href="#" class="nav-link px-2 text-muted">Shop</a></li>
+            <li class="nav-item"><a href="{{ path('app_shop') }}" class="nav-link px-2 text-muted">Shop</a></li>
 
         </ul>
     </footer>
