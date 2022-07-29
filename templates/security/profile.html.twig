@@ -10,8 +10,9 @@
         <div class="d-flex align-items-start">
                 <div class="nav flex-column nav-pills me-3 " id="v-pills-tab" role="tablist" aria-orientation="vertical">
                     <button class="nav-link active" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Profile</button>
-                    <button class="nav-link" id="v-pills-cart-tab" data-bs-toggle="pill" data-bs-target="#v-pills-cart" type="button" role="tab" aria-controls="v-pills-cart" aria-selected="false">Cart</button>
+                    <button class="nav-link" id="v-pills-history-tab" data-bs-toggle="pill" data-bs-target="#v-pills-history" type="button" role="tab" aria-controls="v-pills-history" aria-selected="false">Order history</button>
                     <button class="nav-link" id="v-pills-settings-tab" data-bs-toggle="pill" data-bs-target="#v-pills-settings" type="button" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</button>
+                    <li class="nav-link"><a href="{{ path('app_logout') }}" class="nav-link ">Logout</a></li>
                 </div>
             <main class="col-md-auto ms-sm-auto col-lg-10 px-md-4 border-bottom">
             <div class="tab-content" id="v-pills-tabContent">
@@ -29,8 +30,9 @@
                             </div>
                         </div>
                     </div>
-                    <div class="tab-pane fade" id="v-pills-cart" role="tabpanel" aria-labelledby="v-pills-cart-tab">
-{#                        {{ include('cart/_cart.html.twig'),{} }}#}
+                    <div class="tab-pane fade" id="v-pills-history" role="tabpanel" aria-labelledby="v-pills-history-tab">
+{#                        @TODO remove order history#}
+{#                        {%  include('cart/_cart.html.twig') %}#}
                     </div>
                     <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
 

@@ -63,7 +63,7 @@ class CartService
      */
     public function getCartByUserId($userId): array
     {
-        return $this->cartRepository->findBy(['user_id' => $userId]);
+        return $this->cartRepository->findBy(['user_id' => $userId, 'order_id' => null]);
     }
 
     /**

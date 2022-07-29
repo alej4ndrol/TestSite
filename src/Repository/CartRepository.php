@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 use App\Entity\Cart;
+use App\Entity\Order;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -39,6 +40,10 @@ class CartRepository extends ServiceEntityRepository
         }
     }
 
+    public function addOrderId(Cart $entity, Order $order_id):Cart
+    {
+        return $entity->setOrderId($order_id);
+    }
 //    /**
 //     * @return Cart[] Returns an array of Cart objects
 //     */

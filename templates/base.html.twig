@@ -25,9 +25,9 @@
         </ul>
         <ul class="nav">
             {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                    <li class="nav-item"><a href="{{ path('app_order_history') }}" class="nav-link link-dark px-2 ">Order history</a></li>
                     <li class="nav-item"><a href="{{ path('app_cart') }}" class="nav-link link-dark px-2 ">Cart</a></li>
-                    <li class="nav-item"><a href="{{ path('app_profile') }}" class="nav-link link-dark px-2 ">{{ app.user.userIdentifier }}</a></li>
-                    <li class="nav-item"><a href="{{ path('app_logout') }}" class="nav-link link-dark px-2 ">Logout</a></li>
+                    <li class="nav-item"><a href="{{ path('app_profile') }}" class="nav-link link-dark px-2 ">Profile</a></li>
 {#               @TODO cart#}
                 {% else  %}
                     <li class="nav-item"><a href="{{ path('app_login') }}" class="nav-link link-dark px-2">Login</a></li>
@@ -38,15 +38,14 @@
 </nav>
 <header class="py-2 mb-4 border-bottom">
     <div class="container d-flex flex-wrap justify-content-center">
-        <a href="/" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
-            <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"></use></svg>
+        <a href="{{ path('app_shop') }}" class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark text-decoration-none">
             <span class="fs-4">DolbyShop</span>
         </a>
         <h5 class="d-flex align-items-center mb-3 mb-lg-0 me-lg-auto text-dark">
             {% block page %}{% endblock %}
         </h5>
-        <form class="col-12 col-lg-auto mb-3 mb-lg-0" role="search">
-            <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+        <form class="col-12 col-lg-3 mb-3 mb-lg-0" role="search" method="get" action="{{ path('app_search') }}">
+            <input type="search" class="form-control" placeholder="Search by name(concrete)" aria-label="Search" name="name">
 {#            @TODO Add search by item#}
         </form>
     </div>

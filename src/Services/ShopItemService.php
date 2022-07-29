@@ -32,4 +32,8 @@ class ShopItemService
     {
         return $this->shopItemRepository->find($id);
     }
+    public function searchByName(string $name): array
+    {
+        return $this->shopItemRepository->findBy(['name' => "$name"]);
+    }
 }

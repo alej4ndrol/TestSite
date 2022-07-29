@@ -22,6 +22,9 @@ class Cart
     #[ORM\ManyToOne(inversedBy: 'carts')]
     private ?User $user_id = null;
 
+    #[ORM\ManyToOne(inversedBy: 'carts')]
+    private ?Order $order_id = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Cart
     public function setUserId(?User $user_id): self
     {
         $this->user_id = $user_id;
+
+        return $this;
+    }
+
+    public function getOrderId(): ?Order
+    {
+        return $this->order_id;
+    }
+
+    public function setOrderId(?Order $order_id): self
+    {
+        $this->order_id = $order_id;
 
         return $this;
     }

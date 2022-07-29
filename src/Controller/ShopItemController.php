@@ -29,7 +29,22 @@ class ShopItemController extends AbstractController
     {
         $items = $this->shopItemService->getAllItems();
         return $this->render('shop_item/index.html.twig', [
-            'items' => $items
+            'items' => $items,
+            'page' => 'shop'
+        ]);
+    }
+
+    /**
+     * @return Response
+     */
+    #[Route('/shop/search', name: 'app_search')]
+    public function search(Request $request): Response
+    {
+        $name = $request->query->get('name');
+        $items = $this->shopItemService->searchByName($name);
+        return $this->render('shop_item/index.html.twig', [
+            'items' => $items,
+            'page' => 'Search: '. $name
         ]);
     }
 

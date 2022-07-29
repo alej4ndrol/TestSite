@@ -52,7 +52,7 @@ class CartController extends AbstractController
         $userId= $this->getUser();
         $this->cartService->RemoveItemFromCart($userId,$id);
         return $this->redirectToRoute('app_open', [
-            'id' => $id
+            //'id' => $id
         ]);
     }
 
