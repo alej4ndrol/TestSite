@@ -40,7 +40,7 @@ class CartRepository extends ServiceEntityRepository
         }
     }
 
-    public function addOrderId(Cart $entity, Order $order_id):Cart
+    public function addOrderId(Cart $entity, Order $order_id): Cart
     {
         return $entity->setOrderId($order_id);
     }

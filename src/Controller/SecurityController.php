@@ -19,8 +19,9 @@ class SecurityController extends AbstractController
 
         return $this->render('security/login.html.twig', ['last_username' => $lastUsername, 'error' => $error]);
     }
+
     #[Route(path: '/profile', name: 'app_profile')]
-    public function profile () :Response
+    public function profile(): Response
     {
         $this->denyAccessUnlessGranted('ROLE_USER', null, 'User tried to access a page without having ROLE_ADMIN');
 

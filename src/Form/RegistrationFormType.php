@@ -26,7 +26,7 @@ class RegistrationFormType extends AbstractType
                 // this is read and encoded in the controller
                 'mapped' => false,
                 'type' => PasswordType::class,
-                'required'=> true,
+                'required' => true,
                 'first_options' => ['label' => 'Password'],
                 'second_options' => ['label' => 'Repeat password'],
                 'attr' => ['autocomplete' => 'new-password'],
@@ -43,7 +43,7 @@ class RegistrationFormType extends AbstractType
                 ],
             ])
             ->add('submit', SubmitType::class, [
-                'label' => 'Sign Up'])
+                'label' => 'Sign Up', ])
         ;
     }
 
