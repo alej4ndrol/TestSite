@@ -8,13 +8,10 @@ use App\Repository\ShopItemRepository;
 class ShopItemService
 {
     /**
-     * @var ShopItemRepository $shopItemRepository
+     * @var ShopItemRepository
      */
     private $shopItemRepository;
 
-    /**
-     * @param ShopItemRepository $shopItemsRepository
-     */
     public function __construct(ShopItemRepository $shopItemsRepository)
     {
         $this->shopItemRepository = $shopItemsRepository;
@@ -32,6 +29,7 @@ class ShopItemService
     {
         return $this->shopItemRepository->find($id);
     }
+
     public function searchByName(string $name): array
     {
         return $this->shopItemRepository->findBy(['name' => "$name"]);

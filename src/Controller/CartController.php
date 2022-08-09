@@ -9,19 +9,16 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class CartController extends AbstractController
 {
-
     /**
      * @var CartService
      */
     private $cartService;
 
-    /**
-     * @param CartService $cartService
-     */
     public function __construct(CartService $cartService)
     {
         $this->cartService = $cartService;
     }
+
     #[Route('/cartin', name: 'app_cart')]
     public function index(): Response
     {
@@ -30,42 +27,42 @@ class CartController extends AbstractController
 
     /**
      * @param $id
-     * @return Response
      */
     #[Route('/cartAdd/{id<\d+>}', name: 'app_cart_add')]
     public function cartAdd($id): Response
     {
-       $userId= $this->getUser();
-       $this->cartService->AddItemToCart($userId,$id);
+        $userId = $this->getUser();
+        $this->cartService->AddItemToCart($userId, $id);
+
         return $this->redirectToRoute('app_open', [
-            'id' => $id
+            'id' => $id,
         ]);
     }
 
     /**
      * @param $id
-     * @return Response
      */
     #[Route('/cartRemove/{id<\d+>}', name: 'app_remove_cart')]
     public function removeItemCart($id): Response
     {
-        $userId= $this->getUser();
-        $this->cartService->RemoveItemFromCart($userId,$id);
+        $userId = $this->getUser();
+        $this->cartService->RemoveItemFromCart($userId, $id);
+
         return $this->redirectToRoute('app_open', [
-            //'id' => $id
+            // 'id' => $id
         ]);
     }
 
     /**
      * @Route("/cart", name="app_open")
-     * @return Response
      */
     public function openCart(): Response
     {
         $userId = $this->getUser();
+
         return $this->render('/cart/index.html.twig', [
             'title' => 'Cart',
-            'items' => $this->cartService->getCartByUserId($userId)
+            'items' => $this->cartService->getCartByUserId($userId),
         ]);
     }
 
@@ -80,5 +77,4 @@ class CartController extends AbstractController
 //       $this->cartService->removeCart($userId);
 //        return $this->redirectToRoute('app_open');
 //    }
-
 }

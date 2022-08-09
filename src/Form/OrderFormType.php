@@ -16,13 +16,13 @@ class OrderFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('userName',TextType::class,[
+            ->add('userName', TextType::class, [
                 'data' => 'lala',
             ])
-            ->add('userEmail', EmailType::class,[
+            ->add('userEmail', EmailType::class, [
                 'data' => 'lala@mail.ru',
             ])
-            ->add('userPhone', TelType::class,[
+            ->add('userPhone', TelType::class, [
                 'data' => '12342',
             ])
             ->add('submit', SubmitType::class, [
@@ -36,7 +36,6 @@ class OrderFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Order::class,
-
         ]);
     }
 }
